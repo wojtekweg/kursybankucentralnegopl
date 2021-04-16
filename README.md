@@ -4,6 +4,8 @@ https://www.freecodecamp.org/news/a-quick-introduction-to-test-driven-developmen
 
 https://jestjs.io/docs/getting-started
 
+https://www.learnhowtoprogram.com/intermediate-javascript/test-driven-development-and-environments-with-javascript/tdd-with-jest
+
 # Setting up the repository
 
 1. `git clone` this repository.
