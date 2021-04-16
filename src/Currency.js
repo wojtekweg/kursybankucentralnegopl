@@ -3,7 +3,7 @@ class Currency {
     this.code = code;
     this.name = name;
     this.value = value;
-    this.data = data;
+    this.date = date;
   }
   convert(currency_in, currency_out) {}
   get(code, date) {
