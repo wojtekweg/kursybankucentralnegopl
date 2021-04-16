@@ -7,7 +7,7 @@ class Currency {
   }
   convert(currency_in, currency_out) {}
   get(code, date) {
-    return this.code;
+    return undefined;
   }
 }
 module.exports = Currency;

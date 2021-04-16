@@ -1,10 +1,10 @@
 class Gold {
   constructor(value, date) {
     this.value = value;
-    this.data = data;
+    this.date = date;
   }
   get(date) {
-    return this.code;
+    return undefined;
   }
 }
 module.exports = Gold;

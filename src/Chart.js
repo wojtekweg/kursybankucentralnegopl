@@ -6,7 +6,7 @@ class Chart {
     this.data = data;
   }
   get(start, date) {
-    return new Currency();
+    return undefined;
   }
   draw(rates) {}
 }
