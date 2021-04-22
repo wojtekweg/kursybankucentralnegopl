@@ -1,7 +1,7 @@
 # Setting up the repository
 
 1. `git clone` this repository.
-2. Install NPM and run `npm install --save-dev jest` in folder `kursybankucentralnegopl/` to have Jest library, needed for tests in this project. Verify that `./node_modules` folder was created.
+2. Install NPM and run `npm install --save-dev jest` and `npm install frisby --save-dev` in folder `kursybankucentralnegopl/` to have Jest library, needed for tests in this project. Verify that `./node_modules` folder was created.
 3. (Optional) Install Jest plugin for your IDE - for example, I use Visual Studio Code and use the `orta.vscode-jest` extension.
 4. Run `npm run test` for running the tests.
 
