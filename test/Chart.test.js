@@ -14,9 +14,9 @@ test("For an invalid date range chart won't return anything (and all errors will
   expect(test_chart.get.length).toBe(0);
 });
 
-test("For a very long date range chart will load properly.", () => {
+test("For a longer date range chart will load properly.", () => {
   start = "01-01-2002";
-  end = "29-04-2021";
+  end = "01-04-2021";
   test_chart = new Chart(start, end, "PLN");
-  expect(test_chart.get.length).toBe(7058);
+  expect(test_chart.get.length).toBe(31 + 28 + 31);
 });

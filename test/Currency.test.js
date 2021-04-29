@@ -30,10 +30,17 @@ test("Currency name for EUR", () => {
   expect(test_curr.name).toBe("euro");
 });
 
-test("Currency name for EUR", () => {
+test("Currency name for PLN", () => {
   test_curr = new Currency("USD", "12-02-2021");
-  expect(test_curr.name).toBe("euro");
+  expect(test_curr.name).toBe("złoty polski");
 });
+
+// TEST DISABLED, BECAUSE SUCH CURRENCY IS NOT AVAILABLE IN NBP API
+// but is left commented, because one day we might expand the available currencies
+// test("Currency name for TOP (currency with ' sign in the name)", () => {
+//   test_curr = new Currency("USD", "12-02-2021");
+//   expect(test_curr.name).toBe("paʻanga tongijska");
+// });
 
 // historical data
 
@@ -54,10 +61,22 @@ test("Invalid date", () => {
   expect(test_curr.value).toBe(3.8986);
 });
 
+test("Invalid currency change", () => {
+  test_curr = new Currency("USD", "03-04-2021");
+  test_curr.get("DUPA", "03-04-2021");
+  expect(test_curr.code).toBe("USD");
+});
+
 // conversion tests
 
-test("Changing currency", () => {
+test("Changing currency from USD to CHF", () => {
   test_curr = new Currency("USD", "03-04-2021");
   test_curr.get("CHF", "03-04-2021");
   expect(test_curr.code).toBe("CHF");
+});
+
+test("Changing currency from PLN to EUR in a past", () => {
+  test_curr = new Currency("PLN", "03-04-2004");
+  test_curr.get("EUR", "03-04-2004");
+  expect(test_curr.code).toBe("EUR");
 });
