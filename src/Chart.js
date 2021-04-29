@@ -1,12 +1,11 @@
-const Currency = require("./Currency");
-
 class Chart {
-  constructor(start, end, rates) {
-    this.value = value;
-    this.data = data;
+  constructor(start, end, currency_code) {
+    this.start = start;
+    this.end = end;
+    this.currency_code = currency_code;
   }
   get(start, date) {
-    return undefined;
+    return [];
   }
   draw(rates) {}
 }

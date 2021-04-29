@@ -1,29 +1,31 @@
 class Currency {
-	
-	constructor(code, date) {
-		get(code, date);
-	}
-	
-	static convert(currency_in, currency_out, money_in) {
-		//returns amount of money_in in currency_out currency
-	}
-	
-	get(code, date) {
-		this.code = code;
-		this.date = date;
-		changed = false
-		if (//invalid date){
-			changed = true
-			this.date = //date of day before
-			//if date is too old, or from future, get the eldest avaiable, or the newest one
-			//if currency is not aviable by 2-01-2002, and sufficent date wasn't found - set value to nan
-		}
-		if (changed){
-			//inform somehow
-		}
-		this.name = //getname
-		this.value = //exchange rate
-	}
+  constructor(code, date) {
+    this.code = code;
+    this.date = date;
+  }
+
+  static convert(currency_in, currency_out, money_in) {
+    //returns amount of money_in in currency_out currency
+    return undefined;
+  }
+
+  get(code, date) {
+    this.code = code;
+    this.date = date;
+    var changed = false;
+    var invalid_date = true;
+    if (invalid_date) {
+      changed = true;
+      this.date = undefined; //date of day before
+      //if date is too old, or from future, get the eldest avaiable, or the newest one
+      //if currency is not aviable by 2-01-2002, and sufficent date wasn't found - set value to nan
+    }
+    if (changed) {
+      //inform somehow
+    }
+    this.name = undefined; //getname
+    this.value = undefined; //exchange rate
+  }
 }
 
 /*function getSite(url){
@@ -41,6 +43,5 @@ class Currency {
         }
     }
 */
-
 
 module.exports = Currency;
