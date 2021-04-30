@@ -67,6 +67,22 @@ test("Invalid currency change", () => {
   expect(test_curr.code).toBe("USD");
 });
 
+// zakladam, ze testy sa w formacie DD-MM-YYYY (poprawny format), lub YYYY-MM-DD
+test("Invalid date format YYYY-MM-DD", () => {
+  test_curr = new Currency("USD", "2021-04-23");
+  expect(test_curr.date).toBe("23-04-2021");
+});
+
+test("Invalid date format in words", () => {
+  test_curr = new Currency("USD", "2021 jun 16");
+  expect(test_curr.date).toBe("16-06-2021");
+});
+
+test("Check value for invalid date format", () => {
+  test_curr = new Currency("EUR", "2021-04-23");
+  expect(test_curr.value).toBe(4.5649);
+});
+
 // conversion tests
 
 test("Changing currency from USD to CHF", () => {
