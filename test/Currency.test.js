@@ -67,6 +67,11 @@ test("Invalid currency change", () => {
   expect(test_curr.code).toBe("USD");
 });
 
+test("Lowercase currency name", () => {
+  test_curr = new Currency("usd", "05-01-2021");
+  expect(test_curr.value).toBe(3.7031);
+});
+
 // zakladam, ze testy sa w formacie DD-MM-YYYY (poprawny format), lub YYYY-MM-DD
 test("Invalid date format YYYY-MM-DD", () => {
   test_curr = new Currency("USD", "2021-04-23");
