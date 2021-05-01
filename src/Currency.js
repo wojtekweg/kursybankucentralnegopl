@@ -34,4 +34,4 @@
 	}
 }
 
-//module.exports = Currency;
+module.exports = Currency;
