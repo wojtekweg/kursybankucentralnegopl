@@ -9,11 +9,11 @@ class Currency {
     this.code = code;
     this.date = date;
 
-    if (code != "pln") {
+    if (this.code != "PLN") {
       const http = new XMLHttpRequest();
       http.open(
         "GET",
-        `http://api.nbp.pl/api/exchangerates/rates/A/${code}/${date}/`
+        `http://api.nbp.pl/api/exchangerates/rates/A/${code.toLowerCase()}/${date}/`
       );
       http.send();
 
