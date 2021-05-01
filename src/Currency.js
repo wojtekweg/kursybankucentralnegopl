@@ -32,4 +32,5 @@ class Currency {
   }
 }
 
+var module = module || {};
 module.exports = Currency;

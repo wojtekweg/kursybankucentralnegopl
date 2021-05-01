@@ -7,4 +7,6 @@ class Gold {
     return undefined;
   }
 }
+
+var module = module || {};
 module.exports = Gold;
