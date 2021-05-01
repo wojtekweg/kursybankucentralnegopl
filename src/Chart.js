@@ -9,4 +9,6 @@ class Chart {
   }
   draw(rates) {}
 }
+
+var module = module || {};
 module.exports = Chart;
