@@ -8,7 +8,7 @@ class TableNBP {
 		
 		var parent = this;
 		
-		http.open("GET", `http://api.nbp.pl/api/exchangerates/tables/A/${this.format(this.date)}/`);
+		http.open("GET", `http://api.nbp.pl/api/exchangerates/tables/A/${TableNBP.format(this.date)}/`);
 		
 		http.onreadystatechange = function () {
 			if (http.readyState == 4){
@@ -16,7 +16,7 @@ class TableNBP {
 					callback(JSON.parse(http.responseText))
 				} else {
 					parent.date.setDate(parent.date.getDate() - 1)
-					http.open("GET", `http://api.nbp.pl/api/exchangerates/tables/A/${parent.format(parent.date)}/`);
+					http.open("GET", `http://api.nbp.pl/api/exchangerates/tables/A/${TableNBP.format(parent.date)}/`);
 					http.send();
 				}
 			}
@@ -37,7 +37,7 @@ class TableNBP {
 		return d
 	}
 	
-	format(d){
+	static format(d){
 		var day = d.getDate()
 		if (day < 10) {
 			day = "0" + day

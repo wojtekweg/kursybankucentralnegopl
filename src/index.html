@@ -24,6 +24,10 @@
 		<script src = "TableNBP.js"></script>
 		<script>
 			
+			d1.max = TableNBP.format(new Date())
+			d1.value = d1.max
+			setDate()
+			
 			function setDate(){
 				s1.innerHTML = ""
 				c1.disabled = true
@@ -52,7 +56,11 @@
 			}
 			
 			function f() {
-				w1.value = n1.value * c1.value / c2.value;
+				if (c1.value == c2.value){
+					w1.value = n1.value
+				} else {
+					w1.value = (n1.value * c1.value / c2.value).toFixed(2);
+				}
 			}
 			
 		</script>
