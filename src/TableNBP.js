@@ -49,3 +49,6 @@ class TableNBP {
 		return d.getFullYear() + "-" + month + "-" + day
 	}
 }
+
+var module = module || {};
+module.exports = TableNBP;
