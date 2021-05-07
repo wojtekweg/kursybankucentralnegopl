@@ -1,5 +1,6 @@
 const TableNBP = require("../src/TableNBP.js");
-const frisby = require("frisby");
+
+// rates table
 
 test("Dollar rate for 07.05.2021", (done) => {
   var dollar_index_for_07_05_2021 = 1;
@@ -16,6 +17,24 @@ test("Rates table length for 07.05.2021", (done) => {
     done();
   };
   tab = new TableNBP("2021-05-07", got_rate);
+});
+
+test("Check that on 12 February 2021 EUR currency code was on 7th index", (done) => {
+  var euro_index_for_12_02_2021 = 7;
+  got_rate = function (table) {
+    expect(table[0].rates[euro_index_for_12_02_2021].code).toBe("EUR");
+    done();
+  };
+  tab = new TableNBP("2021-02-12", got_rate);
+});
+
+test("Check that on 7 May 2021 USD currency code was on 1st index", (done) => {
+  var dollar_index_for_07_05_2021 = 1;
+  got_rate = function (table) {
+    expect(table[0].rates[dollar_index_for_07_05_2021].code).toBe("USD");
+    done();
+  };
+  tab = new TableNBP("07.05.2021", got_rate);
 });
 
 // date checks
@@ -49,100 +68,79 @@ test("Date before 2nd January 2002", (done) => {
 });
 
 test("Holiday date check", (done) => {
-  var date = "12-02-1999";
+  var date = "2021-05-03";
   got_rate = function (table) {
-    expect(table[0].effectiveDate).toBe("2002-01-02");
+    expect(table[0].effectiveDate).toBe("2021-04-30");
     done();
   };
   tab = new TableNBP(date, got_rate);
 });
 
-// redundancy tests
+test("Holiday date check with year switch", (done) => {
+  var date = "2021-01-03";
+  got_rate = function (table) {
+    expect(table[0].effectiveDate).toBe("2020-12-31");
+    done();
+  };
+  tab = new TableNBP(date, got_rate);
+});
 
-// test("When setting a code, returns same setted code", () => {
-//   test_curr = new TableNBP("PLN", "12-02-2021");
-//   expect(test_curr.code).toBe("PLN");
-// });
+// historical data
 
-// test("PLN will return 1", () => {
-//   test_curr = new TableNBP("PLN", "12-02-2021");
-//   expect(test_curr.value).toBe(1);
-// });
+test("Check that on 12 February 2021 1 EUR was worth 4.5029 PLN (historical data)", (done) => {
+  var euro_index_for_12_02_2021 = 7;
+  got_rate = function (table) {
+    expect(table[0].rates[euro_index_for_12_02_2021].mid).toBe(4.5029);
+    done();
+  };
+  tab = new TableNBP("2021-02-12", got_rate);
+});
 
-// test("Redundant TableNBP change", () => {
-//   test_curr = new TableNBP("USD", "03-04-2021");
-//   test_curr.get("USD", "03-04-2021");
-//   expect(test_curr.code).toBe("USD");
-// });
+// date tests
 
-// // TableNBP names
+test("Invalid date format YYYY-MM-DD", () => {
+  test_curr = new TableNBP("2021-04-23", got_rate);
+  expect(test_curr.date.toISOString().split("T")[0]).toBe("2021-04-23");
+});
 
-// test("TableNBP name for USD", () => {
-//   test_curr = new TableNBP("USD", "12-02-2021");
-//   expect(test_curr.name).toBe("dolar amerykański");
-// });
+test("Invalid date format in words", () => {
+  test_curr = new TableNBP("USD", "16 June 2021");
+  expect(test_curr.date.toString()).toBe("Invalid Date");
+});
 
-// test("TableNBP name for EUR", () => {
-//   test_curr = new TableNBP("EUR", "12-02-2021");
-//   expect(test_curr.name).toBe("euro");
-// });
+// static functions
 
-// test("TableNBP name for PLN", () => {
-//   test_curr = new TableNBP("USD", "12-02-2021");
-//   expect(test_curr.name).toBe("złoty polski");
-// });
+test("Range for date in future returns today's date", () => {
+  var date = new Date("2043-05-07");
+  var today = new Date();
+  expect(TableNBP.range(date).toISOString().split("T")[0]).toBe(
+    today.toISOString().split("T")[0]
+  );
+});
 
-// // TEST DISABLED, BECAUSE SUCH TableNBP IS NOT AVAILABLE IN NBP API
-// // but is left commented, because one day we might expand the available currencies
-// // test("TableNBP name for TOP (TableNBP with ' sign in the name)", () => {
-// //   test_curr = new TableNBP("USD", "12-02-2021");
-// //   expect(test_curr.name).toBe("paʻanga tongijska");
-// // });
+test("Edge date for static range check scenario (today)", () => {
+  var today = new Date();
+  expect(TableNBP.range(new Date()).toISOString().split("T")[0]).toBe(
+    today.toISOString().split("T")[0]
+  );
+});
 
-// // historical data
+test("Edge date for static range check scenario (2 January 2002)", () => {
+  var date = new Date("2002-01-02");
+  expect(TableNBP.range(date).toISOString().split("T")[0]).toBe("2002-01-02");
+});
 
-// test("Check that on 12 February 2021 1 EUR was worth 4.4999 PLN (historical data)", () => {
-//   test_curr = new TableNBP("EUR", "12-02-2021");
-//   expect(test_curr.value).toBe(4.4999);
-// });
+test("One day before edge date for static range check scenario (1 January 2002)", () => {
+  var date = new Date("2002-01-01");
+  expect(TableNBP.range(date).toISOString().split("T")[0]).toBe("2002-01-02");
+});
 
-// test("Invalid TableNBP change", () => {
-//   test_curr = new TableNBP("USD", "03-04-2021");
-//   test_curr.get("DUPA", "03-04-2021");
-//   expect(test_curr.code).toBe("USD");
-// });
+test("Date in between for static range check scenario", () => {
+  var date = new Date("2009-04-02");
+  expect(TableNBP.range(date).toISOString().split("T")[0]).toBe("2009-04-02");
+});
 
-// test("Lowercase TableNBP name", () => {
-//   test_curr = new TableNBP("usd", "05-01-2021");
-//   expect(test_curr.value).toBe(3.7031);
-// });
-
-// // zakladam, ze testy sa w formacie DD-MM-YYYY (poprawny format), lub YYYY-MM-DD
-// test("Invalid date format YYYY-MM-DD", () => {
-//   test_curr = new TableNBP("USD", "2021-04-23");
-//   expect(test_curr.date).toBe("23-04-2021");
-// });
-
-// test("Invalid date format in words", () => {
-//   test_curr = new TableNBP("USD", "2021 jun 16");
-//   expect(test_curr.date).toBe("16-06-2021");
-// });
-
-// test("Check value for invalid date format", () => {
-//   test_curr = new TableNBP("EUR", "2021-04-23");
-//   expect(test_curr.value).toBe(4.5649);
-// });
-
-// // conversion tests
-
-// test("Changing TableNBP from USD to CHF", () => {
-//   test_curr = new TableNBP("USD", "03-04-2021");
-//   test_curr.get("CHF", "03-04-2021");
-//   expect(test_curr.code).toBe("CHF");
-// });
-
-// test("Changing TableNBP from PLN to EUR in a past", () => {
-//   test_curr = new TableNBP("PLN", "03-04-2004");
-//   test_curr.get("EUR", "03-04-2004");
-//   expect(test_curr.code).toBe("EUR");
-// });
+test("Date in range before 2nd January 2002", () => {
+  var date = new Date("12-02-1999");
+  expect(TableNBP.range(date).toISOString().split("T")[0]).toBe("2002-01-02");
+});
