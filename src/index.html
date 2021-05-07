@@ -3,32 +3,43 @@
 	</head>
 	<body>
 		<h1>kursybankucentralnego.pl</h1>
-		<input type = "date" min="2002-01-02" id = "d1" onchange = "setDate()"></date>
+		<input type = "date" min = "2002-01-02" id = "d1" onchange = "setDate()"></date>
 		<span id = "s1"></span>
 		<br>
 		<br>
-		<select id = "c1">
+		<select id = "c1" disabled >
 			<option>PLN</option>
 		</select>
-		<input type = "number" min = "0" step = "0.01" value = "0" id = "n1">
-		<select id = "c2">
+		<input type = "number" min = "0" step = "0.01" value = "0" id = "n1" disabled>
+		<select id = "c2" disabled>
 			<option>PLN</option>
 		</select>
 		<br>
 		<br>
-		<input type = "button" value = "Przelicz" onclick = "f()">
+		<input type = "button" value = "Przelicz" id = "b1" onclick = "f()" disabled>
 		<br>
 		<br>
-		<input type = "number" min = "0" step = "0.01" value = "0" id = "w1">
+		<input type = "number" min = "0" step = "0.01" value = "0" id = "w1" disabled>
 		
 		<script src = "TableNBP.js"></script>
 		<script>
 			
 			function setDate(){
+				s1.innerHTML = ""
+				c1.disabled = true
+				n1.disabled = true
+				c2.disabled = true
+				b1.disabled = true
+				w1.disabled = true
 				actual = new TableNBP(d1.value, ready);
 			}
 			
 			function ready(table){
+				c1.disabled = false
+				n1.disabled = false
+				c2.disabled = false
+				b1.disabled = false
+				w1.disabled = false
 				if (table[0].effectiveDate != d1.value){
 					d1.value = table[0].effectiveDate
 					s1.innerHTML = "Data została zmieniona na najnowszą poprzednią dostępną"
