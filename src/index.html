@@ -4,18 +4,15 @@
 	<body>
 		<h1>kursybankucentralnego.pl</h1>
 		<input type = "date" min="2002-01-02" id = "d1" onchange = "setDate()"></date>
+		<span id = "s1"></span>
 		<br>
 		<br>
-		<select id = "c1" onchange = "cur1()">
-			<option value = "PLN">PLN</option>
-			<option value = "USD">USD</option>
-			<option value = "EUR">EUR</option>
+		<select id = "c1">
+			<option>PLN</option>
 		</select>
-		<input type = "number" min="0" step = "0.01" value = "0" id = "n1">
-		<select id = "c2" onchange = "cur2()">
-			<option value = "PLN">PLN</option>
-			<option value = "USD">USD</option>
-			<option value = "EUR">EUR</option>
+		<input type = "number" min = "0" step = "0.01" value = "0" id = "n1">
+		<select id = "c2">
+			<option>PLN</option>
 		</select>
 		<br>
 		<br>
@@ -25,28 +22,28 @@
 		<input type = "number" min = "0" step = "0.01" value = "0" id = "w1">
 		
 		<script src = "TableNBP.js"></script>
-		<script src = "Currency.js"></script>
 		<script>
-			var currencyLeft, currencyRight
 			
 			function setDate(){
-				actual = new TableNBP(d1.value);
+				actual = new TableNBP(d1.value, ready);
 			}
 			
-			function cur1() {
-				currencyLeft = new Currency();
-				currencyLeft.get(c1.value, d1.value)
-			}
-			
-			function cur2() {
-				currencyRight = new Currency();
-				currencyRight.get(c2.value, d1.value)
+			function ready(table){
+				if (table[0].effectiveDate != d1.value){
+					d1.value = table[0].effectiveDate
+					s1.innerHTML = "Data została zmieniona na najnowszą poprzednią dostępną"
+				}
+				inner = "<option value = \"1\">PLN</option>"
+				for (i = 0; i < table[0].rates.length; ++i){
+					inner += `<option value = \"${table[0].rates[i].mid}\">${table[0].rates[i].code}</option>`
+				}
+				c1.innerHTML = c2.innerHTML = inner
 			}
 			
 			function f() {
-				console.log(currencyLeft)
-				w1.value = n1.value * Currency.convert(currencyLeft, currencyRight);
+				w1.value = n1.value * c1.value / c2.value;
 			}
+			
 		</script>
 	</body>
 </html>
