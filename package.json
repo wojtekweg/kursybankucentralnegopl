@@ -2,7 +2,7 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --collectCoverage --",
-    "cypress": "./node_modules/.bin/cypress"
+    "cypress": "./node_modules/.bin/cypress open"
   },
   "devDependencies": {
     "cypress": "^7.2.0",
