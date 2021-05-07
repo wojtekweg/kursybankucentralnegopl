@@ -2,7 +2,7 @@ class TableNBP {
 	
 	constructor (date, callback){
 		this.date = new Date(date);
-		this.date = this.range(this.date)
+		this.date = TableNBP.range(this.date)
 		
 		var http = new XMLHttpRequest();
 		
@@ -25,7 +25,7 @@ class TableNBP {
 		http.send();
 	}
 	
-	range(d){
+	static range(d){
 		var start = new Date("2002-01-02")
 		var end = new Date()
 		if (d < start){
