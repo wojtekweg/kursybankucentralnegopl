@@ -162,6 +162,12 @@ select {
     background: #2c3e50;
     background-image: none;
     font-family: inherit;
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    -moz-text-align-last: center;
+         text-align-last: center;
+    cursor: pointer;
   }
   /* Remove IE arrow */
   select::-ms-expand {
@@ -178,13 +184,7 @@ select {
     overflow: hidden;
     /* border-radius: .25em; */
   }
-  select {
-    flex: 1;
-    padding: 0 .5em;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-  }
+
   /* Arrow */
   .select::after {
     content: '\25BC';
