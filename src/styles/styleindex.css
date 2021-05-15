@@ -45,7 +45,7 @@ body::after{
 }
 
 header{
-    background-color: #2c3e50;
+    background-color: #292f59;
     padding:1rem 0 1.5rem 0;
 }
 
@@ -78,7 +78,7 @@ hr{
     text-decoration: none;
     /* color: rgb(0, 9, 128); */
     color: white;
-    background-color:#2c3e50;
+    background-color:#292f59;
     transition: 200ms ease-in-out;
     box-shadow: 0px 5px 10px black;
 }

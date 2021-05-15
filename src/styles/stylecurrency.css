@@ -1,40 +1,3 @@
-header{
-    padding-top:1rem;
-    background-color: #2c3e50;
-}
-
-hr{
-    margin:1rem 0;
-    color: rgb(0, 9, 128);
-}
-
-nav{
-    display: flex;
-    flex-direction: column;
-    /* margin-top:5rem; */
-}
-
-
-ul{
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2rem;
-}
-
-.nav-item{
-    text-decoration: none;
-    color:white;
-    padding:0.5rem 0.5rem 1rem 0.5rem;
-    transition: 200ms ease-in-out;
-}
-
-.nav-item:hover{
-    border-bottom:#f39c12 4px solid;
-    /* background-color: #19242e; */
-    color:#f39c12;
-}
-
 main{
     /* border: black 1px solid; */
     border-radius: 10px;
@@ -85,7 +48,7 @@ main{
     text-align: center;
     /* align-self: center; */
     color: white;
-    background-color: #2c3e50;
+    background-color: #292f59;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,7 +97,7 @@ input{
 button{
     display: block;
     margin: 0 auto;
-    background-color: #2c3e50;
+    background-color: #292f59;
     outline: none;
     color: #fff;
     padding: 0.7rem 2rem;
@@ -159,7 +122,7 @@ select {
     /* height: 2rem; */
     box-shadow: none;
     border: 0 !important;
-    background: #2c3e50;
+    background: #292f59;
     background-image: none;
     font-family: inherit;
     flex: 1;
