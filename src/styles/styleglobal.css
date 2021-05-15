@@ -80,3 +80,11 @@ ul{
     /* background-color: #19242e; */
     color:#f39c12;
 }
+
+.current-nav-item{
+    text-decoration: none;
+    color:white;
+    padding:0.5rem 0.5rem 1rem 0.5rem;
+    transition: 200ms ease-in-out;
+    border-bottom:white 4px solid;
+}
