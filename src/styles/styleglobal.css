@@ -1,0 +1,82 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    /* padding:1rem; */
+    position: relative;
+    font-family: 'Gothic A1', sans-serif;
+    /* font-weight: 400; */
+}
+
+body::after{
+    content: '';
+    background: url(../images/tlomonety.jpeg);
+    /* background-position: 0% 0%; */
+    background-position: top 35% left 0%;
+    background-size:cover;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+#dot{
+    color:#f39c12;
+    font-size:inherit;
+}
+
+#logo{
+    font-size: 3rem;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight:400;
+    color: white;
+    margin-left: 3rem;
+}
+
+header{
+    padding-top:1rem;
+    background-color: #2c3e50;
+}
+
+hr{
+    margin:1rem 0;
+    color: rgb(0, 9, 128);
+}
+
+nav{
+    display: flex;
+    flex-direction: column;
+    /* margin-top:5rem; */
+}
+
+
+ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.nav-item{
+    text-decoration: none;
+    color:white;
+    padding:0.5rem 0.5rem 1rem 0.5rem;
+    transition: 200ms ease-in-out;
+}
+
+.nav-item:hover{
+    border-bottom:#f39c12 4px solid;
+    /* background-color: #19242e; */
+    color:#f39c12;
+}
