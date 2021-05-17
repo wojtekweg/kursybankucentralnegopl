@@ -1,8 +1,10 @@
+//Observer design pattern
+
 class TableNBP {
 	
 	constructor (date, callback){
 		this.date = new Date(date);
-		this.date = TableNBP.range(this.date)
+		this.date = TableNBP.range(this.date);
 		
 		var http = new XMLHttpRequest();
 		
