@@ -22,17 +22,17 @@
 			<hr>
 		</header>
 		<main>
+			<input type = "date" min = "2002-01-02" id = "dateLeft">
+			<input type = "date" min = "2002-01-02" id = "dateRight">
+			<br>
+			<br>
 			<canvas id = "can"></canvas>
+			<script src = "Chart.js"></script>
+			<script src = "Mediator.js"></script>
 			<script>
-				//Mediator design pattern
-				var chart = new Chart(this);
-				var can.getContext('2d')
-				
-				/*var height = 150
-				var max = 5
-				var column = 3.14 / max * height
-				c.fillRect(0, height - column, 30, column)
-				console.log(c)*/
+				dateLeft.max = new Date().toISOString().split("T")[0];
+				dateRight.max = new Date().toISOString().split("T")[0];
+				var mediator = new Mediator(document);
 			</script>
 		</main>
 		<footer>
