@@ -5,13 +5,9 @@ class TableNBP {
 	constructor (date, callback){
 		this.date = new Date(date);
 		this.date = TableNBP.range(this.date);
-		
 		var http = new XMLHttpRequest();
-		
 		var parent = this;
-		
 		http.open("GET", `http://api.nbp.pl/api/exchangerates/tables/A/${TableNBP.format(this.date)}/`);
-		
 		http.onreadystatechange = function () {
 			if (http.readyState == 4){
 				if (http.status == 200) {
@@ -23,7 +19,6 @@ class TableNBP {
 				}
 			}
 		}
-		
 		http.send();
 	}
 	

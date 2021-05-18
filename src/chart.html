@@ -37,13 +37,20 @@
 				<option>GBP</option>
 			</select>
 			<br>
+			<span id = "dateSpan"></span>
+			<br>
 			<br>
 			<canvas id = "can"></canvas>
 			<script src = "Chart.js"></script>
 			<script src = "Mediator.js"></script>
 			<script>
-				dateLeft.max = new Date().toISOString().split("T")[0];
-				dateRight.max = new Date().toISOString().split("T")[0];
+				let today = new Date()
+				dateLeft.max = today.toISOString().split("T")[0];
+				dateRight.max = today.toISOString().split("T")[0];
+				dateRight.value = today.toISOString().split("T")[0];
+				let past = today
+				past.setDate(past.getDate() - 92)
+				dateLeft.value = past.toISOString().split("T")[0];
 				var mediator = new Mediator(document);
 			</script>
 		</main>
