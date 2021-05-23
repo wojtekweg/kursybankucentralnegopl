@@ -33,3 +33,6 @@ class Chart {
 		return true;
 	}
 }
+
+var module = module || {};
+module.exports = Chart;
