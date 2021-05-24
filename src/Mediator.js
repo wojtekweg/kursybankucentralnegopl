@@ -1,6 +1,14 @@
 //Mediator design pattern
+
+//S - It's only puropose is to handle communication between objects
+//O - Class can be extended in various ways (for example more objects to handle), but modyfying is rather hard 
+//L - If there would be any child classes for some reason, they can use static methods freely
+//I - There are no interfaces in JavaScript
+//D - Once againg, there are no interfaces in JavaScript
+
 class Mediator {
 	
+	//Creates new mediator with all the objects that it connects
 	constructor (source){
 		this.left = source.getElementById('dateLeft')
 		let parent = this
@@ -19,6 +27,7 @@ class Mediator {
 		this.getChart()
 	}
 	
+	//Function for objects to communicate with the mediator, handles messages
 	notify(obj, message){
 		switch (obj){
 			case "select":
@@ -63,6 +72,7 @@ class Mediator {
 		}
 	}
 	
+	//Checks if all necessary data is provided and getting a chart data if so
 	getChart(){
 		if (this.start != undefined && this.end != undefined && this.code != undefined){
 			this.chart.get(this.start, this.end, this.code)
@@ -70,5 +80,6 @@ class Mediator {
 	}
 }
 
+//For testing purposes
 var module = module || {};
 module.exports = Mediator;

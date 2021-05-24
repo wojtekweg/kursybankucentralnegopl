@@ -59,10 +59,12 @@
 				<script src = "TableNBP.js"></script>
 				<script>
 					
+					//Setting max and current value of date input to today
 					dateInput.max = TableNBP.format(new Date())
 					dateInput.value = dateInput.max
 					setDate()
 					
+					//Initializes downolading data when date was changed and at the beginning. Blocking all the inputs while data is not ready.
 					function setDate(){
 						dateSpan.innerHTML = ""
 						leftSelect.disabled = true
@@ -70,26 +72,34 @@
 						rightSelect.disabled = true
 						convertInput.disabled = true
 						resultInput.disabled = true
-						actual = new TableNBP(dateInput.value, ready);
+						let actual = new TableNBP(dateInput.value, ready);
 					}
 					
+					//Function that is passed to TableNBP object
 					function ready(table){
+						
+						//Unlocking inputs
 						leftSelect.disabled = false
 						moneyInput.disabled = false
 						rightSelect.disabled = false
 						convertInput.disabled = false
 						resultInput.disabled = false
+						
+						//Handling the date input being changed by the object
 						if (table[0].effectiveDate != dateInput.value){
 							dateInput.value = table[0].effectiveDate
 							dateSpan.innerHTML = "Data została zmieniona na <br>najnowszą poprzednią dostępną"
 						}
-						inner = "<option value = \"1\">PLN</option>"
-						for (i = 0; i < table[0].rates.length; ++i){
+						
+						//Setting the list of avaiable currencies
+						let inner = "<option value = \"1\">PLN</option>"
+						for (let i = 0; i < table[0].rates.length; ++i){
 							inner += `<option value = \"${table[0].rates[i].mid}\">${table[0].rates[i].code}</option>`
 						}
 						leftSelect.innerHTML = rightSelect.innerHTML = inner
 					}
 					
+					//Actually calculates values between currencies
 					function convert() {
 						if (leftSelect.value == rightSelect.value){
 							resultInput.value = moneyInput.value

@@ -44,14 +44,19 @@
 			<script src = "Chart.js"></script>
 			<script src = "Mediator.js"></script>
 			<script>
+				//Setting today's date to date inputs
 				let today = new Date()
 				dateLeft.max = today.toISOString().split("T")[0];
 				dateRight.max = today.toISOString().split("T")[0];
 				dateRight.value = today.toISOString().split("T")[0];
+				
+				//Setting left date input to be 92 before today, so the site shows full range when loaded
 				let past = today
 				past.setDate(past.getDate() - 92)
 				dateLeft.value = past.toISOString().split("T")[0];
-				var mediator = new Mediator(document);
+				
+				//Creating mediator object
+				let mediator = new Mediator(document);
 			</script>
 		</main>
 		<footer>
