@@ -1,10 +1,10 @@
 //Mediator design pattern
 
 //S - It's only puropose is to handle communication between objects
-//O - Class can be extended in various ways (for example more objects to handle), but modyfying is rather hard 
+//O - Class can be extended in various ways (more objects to handle), but modyfying is rather hard 
 //L - If there would be any child classes for some reason, they can use static methods freely
 //I - There are no interfaces in JavaScript
-//D - Once againg, there are no interfaces in JavaScript
+//D - Once again, there are no interfaces in JavaScript
 
 class Mediator {
 	
@@ -44,10 +44,14 @@ class Mediator {
 			break;
 			case "chart":
 				if (message != false){
+					//Clears data message
 					this.span.innerHTML = ""
+					//Sets dimensions
 					let width = this.canvas.width;
 					let height = this.canvas.height;
+					//Clears canvas
 					this.context.clearRect(0, 0, width, height);
+					//Min and max values of data
 					let max = message.rates[0].mid
 					let min = message.rates[0].mid
 					for (let i = 1; i < message.rates.length; ++i){
@@ -58,6 +62,7 @@ class Mediator {
 							min = message.rates[i].mid
 						}
 					}
+					//Setting scale and finally drawing
 					let scale = min * 0.99
 					max -= scale 
 					let size = width / message.rates.length
