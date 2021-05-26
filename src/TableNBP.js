@@ -1,10 +1,10 @@
 //Observer design pattern
 
 //S - It's only puropose is to handle connecting to NBP
-//O - Class can be extended in various ways, but modyfying is rather hard 
+//O - Class can be extended in various ways (getting data for more days at once, so user don't need to get new data when date is changed), but modyfying is rather hard 
 //L - If there would be any child classes for some reason, they can use static methods freely
 //I - There are no interfaces in JavaScript
-//D - Once againg, there are no interfaces in JavaScript
+//D - Once again, there are no interfaces in JavaScript
 
 class TableNBP {
 	
