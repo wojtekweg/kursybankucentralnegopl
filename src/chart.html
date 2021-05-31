@@ -1,17 +1,63 @@
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<title>kursybankucentralnego</title>
+		<link rel="stylesheet" href="styles/stylechart.css">
+		<link rel="stylesheet" href="styles/styleglobal.css">
+		<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;600;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<header>
-			<h1>kursybankucentralnego.pl</h1>
+			<a id="logo" href="index.html">KursyBankuCentralnego<span id="dot">.</span>pl</a>
 			<nav>
-				<a href = "index.html">Przelicznik walut</a> |
-				<a href = "gold.html">Kurs złota</a> |
-				<a href = "chart.html">Wykresy walut</a> |
-				<a href = "about.html">O stronie</a>
+				<ul>
+					<li><a href="index.html" class="nav-item">Kalkulator walutowy</a></li>
+					<li><a href="gold.html" class="nav-item">Kurs złota</a></li>
+					<li><a href="chart.html" class="current-nav-item">Historia kursów walut</a></li>
+					<li><a href="about.html" class="nav-item">Informacje o stronie</a></li>
+				</ul>
 			</nav>
+			<hr>
 		</header>
 		<main>
+			<input type = "date" min = "2002-01-02" id = "dateLeft">
+			<input type = "date" min = "2002-01-02" id = "dateRight">
+			<select id = "currencySelect">
+				<option>AUD</option>
+				<option>JPY</option>
+				<option>CAD</option>
+				<option>NOK</option>
+				<option>EUR</option>
+				<option>USD</option>
+				<option>CHF</option>
+				<option>SEK</option>
+				<option>HUF</option>
+				<option>GBP</option>
+			</select>
+			<br>
+			<span id = "dateSpan"></span>
+			<br>
+			<br>
+			<canvas id = "can"></canvas>
+			<script src = "Chart.js"></script>
+			<script src = "Mediator.js"></script>
+			<script>
+				//Setting today's date to date inputs
+				let today = new Date()
+				dateLeft.max = today.toISOString().split("T")[0];
+				dateRight.max = today.toISOString().split("T")[0];
+				dateRight.value = today.toISOString().split("T")[0];
+				
+				//Setting left date input to be 92 before today, so the site shows full range when loaded
+				let past = today
+				past.setDate(past.getDate() - 92)
+				dateLeft.value = past.toISOString().split("T")[0];
+				
+				//Creating mediator object
+				let mediator = new Mediator(document);
+			</script>
 		</main>
 		<footer>
 		</footer>

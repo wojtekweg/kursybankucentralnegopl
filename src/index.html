@@ -1,81 +1,116 @@
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<title>kursybankucentralnego</title>
+		<link rel="stylesheet" href="styles/stylecurrency.css">
+		<link rel="stylesheet" href="styles/styleglobal.css">
+		<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;600;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<header>
-			<h1>kursybankucentralnego.pl</h1>
+			<a id="logo" href="index.html">KursyBankuCentralnego<span id="dot">.</span>pl</a>
 			<nav>
-				<a href = "index.html">Przelicznik walut</a> |
-				<a href = "gold.html">Kurs złota</a> |
-				<a href = "chart.html">Wykresy walut</a> |
-				<a href = "about.html">O stronie</a>
+				<ul>
+					<li><a href="index.html" class="current-nav-item">Kalkulator walutowy</a></li>
+					<li><a href="gold.html" class="nav-item">Kurs złota</a></li>
+					<li><a href="chart.html" class="nav-item">Historia kursów walut</a></li>
+					<li><a href="about.html" class="nav-item">Informacje o stronie</a></li>
+				</ul>
 			</nav>
+			<hr>
 		</header>
 		<main>
-			<input type = "date" min = "2002-01-02" id = "dateInput" onchange = "setDate()"></date>
-			<span id = "dateSpan"></span>
-			<br>
-			<br>
-			<select id = "leftSelect" disabled >
-				<option>PLN</option>
-			</select>
-			<input type = "number" min = "0" step = "0.01" value = "0" id = "moneyInput" disabled>
-			<select id = "rightSelect" disabled>
-				<option>PLN</option>
-			</select>
-			<br>
-			<br>
-			<input type = "button" value = "Przelicz" id = "convertInput" onclick = "convert()" disabled>
-			<br>
-			<br>
-			<input type = "number" min = "0" step = "0.01" value = "0" id = "resultInput" disabled>
-			
-			<script src = "TableNBP.js"></script>
-			<script>
+			<div class="container">
+				<span id = "dateSpan"></span>
+				<div id="date">
+					<div id="dateDescription">
+						<p>data:</p>
+					</div>
+					<input type = "date" min = "2002-01-02" id = "dateInput" onchange = "setDate()">
+					
+				</div>
+				<div class="exchange">
+					<p>Przelicz z:</p>
+					<div class="currency">
+						<div class="select">
+							<select id = "leftSelect" disabled >
+								<option>PLN</option>
+							</select>
+						</div>
+						<input type = "number" min = "0" step = "0.01" value = "0" id = "moneyInput" disabled>
+					</div>
+				</div>
+				<div class="exchange">
+					<p>Przelicz na:</p>
+					<div class="currency">
+						<div class="select">
+							<select id = "rightSelect" disabled>
+								<option>PLN</option>
+							</select>
+						</div>
+						<input type = "number" min = "0" step = "0.01" value = "0" id = "resultInput" disabled>
+					</div>
+				</div>
 				
-				dateInput.max = TableNBP.format(new Date())
-				dateInput.value = dateInput.max
-				setDate()
-				
-				function setDate(){
-					dateSpan.innerHTML = ""
-					leftSelect.disabled = true
-					moneyInput.disabled = true
-					rightSelect.disabled = true
-					convertInput.disabled = true
-					resultInput.disabled = true
-					actual = new TableNBP(dateInput.value, ready);
-				}
-				
-				function ready(table){
-					leftSelect.disabled = false
-					moneyInput.disabled = false
-					rightSelect.disabled = false
-					convertInput.disabled = false
-					resultInput.disabled = false
-					if (table[0].effectiveDate != dateInput.value){
-						dateInput.value = table[0].effectiveDate
-						dateSpan.innerHTML = "Data została zmieniona na najnowszą poprzednią dostępną"
+				<!-- <input type = "button" value = "Przelicz" id = "convertInput" onclick = "convert()" disabled> -->
+				<button id = "convertInput" onclick = "convert()" disabled>Przelicz</button>
+				<script src = "TableNBP.js"></script>
+				<script>
+					
+					//Setting max and current value of date input to today
+					dateInput.max = TableNBP.format(new Date())
+					dateInput.value = dateInput.max
+					setDate()
+					
+					//Initializes downolading data when date was changed and at the beginning. Blocking all the inputs while data is not ready.
+					function setDate(){
+						dateSpan.innerHTML = ""
+						leftSelect.disabled = true
+						moneyInput.disabled = true
+						rightSelect.disabled = true
+						convertInput.disabled = true
+						resultInput.disabled = true
+						resultInput.value = 0;
+						let actual = new TableNBP(dateInput.value, ready);
 					}
-					inner = "<option value = \"1\">PLN</option>"
-					for (i = 0; i < table[0].rates.length; ++i){
-						inner += `<option value = \"${table[0].rates[i].mid}\">${table[0].rates[i].code}</option>`
+					
+					//Function that is passed to TableNBP object
+					function ready(table){
+						
+						//Unlocking inputs
+						leftSelect.disabled = false
+						moneyInput.disabled = false
+						rightSelect.disabled = false
+						convertInput.disabled = false
+						resultInput.disabled = false
+						
+						//Handling the date input being changed by the object
+						if (table[0].effectiveDate != dateInput.value){
+							dateInput.value = table[0].effectiveDate
+							dateSpan.innerHTML = "Data została zmieniona na <br>najnowszą poprzednią dostępną"
+						}
+						
+						//Setting the list of avaiable currencies
+						let inner = "<option value = \"1\">PLN</option>"
+						for (let i = 0; i < table[0].rates.length; ++i){
+							inner += `<option value = \"${table[0].rates[i].mid}\">${table[0].rates[i].code}</option>`
+						}
+						leftSelect.innerHTML = rightSelect.innerHTML = inner
 					}
-					leftSelect.innerHTML = rightSelect.innerHTML = inner
-				}
-				
-				function convert() {
-					if (leftSelect.value == rightSelect.value){
-						resultInput.value = moneyInput.value
-					} else {
-						resultInput.value = (moneyInput.value * leftSelect.value / rightSelect.value).toFixed(2);
+					
+					//Actually calculates values between currencies
+					function convert() {
+						if (leftSelect.value == rightSelect.value){
+							resultInput.value = moneyInput.value
+						} else {
+							resultInput.value = (moneyInput.value * leftSelect.value / rightSelect.value).toFixed(2);
+						}
 					}
-				}
-				
-			</script>
+					
+				</script>
+			</div>
 		</main>
-		<footer>
-			Done by Zofia Błażyca, Wojciech Węgrzyn, Dawid Moza
-		</footer>
 	</body>
 </html>

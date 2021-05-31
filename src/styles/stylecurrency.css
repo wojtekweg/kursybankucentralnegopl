@@ -1,0 +1,224 @@
+main{
+    /* border: black 1px solid; */
+    border-radius: 10px;
+    display: flex;
+    /* justify-content: center; */
+    /* margin: 5rem auto; */
+    padding: 2rem;
+    /* align-items: flex-start; */
+}
+.container{
+    border: solid #2c3e50 2px;
+    border-radius: 15px;
+    padding: 2rem;
+    background-color: white;
+    /* margin-top: 2rem; */
+    margin-left: 8rem;
+    box-shadow: 0px 0px 15px;
+}
+
+#date{
+    display: flex;
+    /* justify-content:space-evenly; */
+    /* width: 100px; */
+    align-items: center;
+    border:black 1px solid;
+    border-radius:10px;
+    height: 3rem;
+    overflow: hidden;
+}
+
+#dateInput{
+    /* padding: 0.3rem; */
+    align-self: center;
+    outline: none;
+    border: none;
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid black;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+#dateDescription{
+    width: 50%;
+    height: 100%;
+    /* justify-self: center; */
+    text-align: center;
+    /* align-self: center; */
+    color: white;
+    background-color: #292f59;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    /* font-family: 'Oswald', sans-serif; */
+    /* letter-spacing:2px; */
+}
+
+.exchange{
+    margin-top:1rem;
+}
+.exchange p{
+    font-size:1.3rem;
+    margin-bottom:0.7rem;
+}
+
+.currency{
+    border:black 1px solid;
+    border-radius:10px;
+    overflow:hidden;
+    display: flex;
+    height: 3rem;
+    /* padding:0.5rem; */
+}
+
+input{
+    border: none;
+    border-left: solid black 1px;
+    padding-left: 0.5rem;
+    width:161px;
+    text-align: center;
+    padding: 0.5rem;
+}
+/* select{
+    border: none;
+    width: 49%;
+    background-color:white;
+    margin-right: 0;
+    text-align: center;
+    white-space: normal;
+     -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}  */
+
+button{
+    display: block;
+    margin: 0 auto;
+    background-color: #292f59;
+    outline: none;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+button:hover{
+    color:#f39c12;
+}
+
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    /* width: 49%; */
+    /* height: 2rem; */
+    box-shadow: none;
+    border: 0 !important;
+    background: #292f59;
+    background-image: none;
+    font-family: inherit;
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    -moz-text-align-last: center;
+         text-align-last: center;
+    cursor: pointer;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  /* Custom Select */
+  .select {
+    position: relative;
+    display: flex;
+    width:161px;
+    height: 100%;
+    line-height: 2.9;
+    background: #2c3e50;
+    overflow: hidden;
+    /* border-radius: .25em; */
+  }
+
+  /* Arrow */
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    /* background: #34495e; */
+    color: #fff;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+    color: #f39c12;
+  }
+
+
+
+  /* #dateSpan{
+    display: inline-block;
+    margin: 20px auto;
+    padding: 0 15px;
+    border: 3px solid tomato;
+    background-color: white;
+    position: absolute;
+    top: 150px;
+    left: 420px;
+    border-radius: 6px;    
+    }
+    #dateSpan:before,
+    #dateSpan:after{
+      content: '';
+      height: 12px;
+      position: absolute;
+      top: 100%;
+    }
+    #dateSpan:before{
+      width: 3px;
+      background-color: tomato;
+      left: 10px;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 100px;
+      transform: rotateY(160deg);
+    }
+    #dateSpan:after{
+      width: 4px;
+      background-color: tomato;
+      left: 16px;
+      border-bottom-left-radius: 100px;
+      border-bottom-right-radius: 50px;
+      transform: skew(-45deg, 0);
+    }
+  
+    #dateSpan >:first-child:after,
+    #dateSpan >:first-child:before {
+      content: '';
+      position: absolute;  
+      background-color: white; 
+      top: 100%;
+    }
+    #dateSpan >:first-child:before {
+      width: 6px;
+      height: 3px;
+      left: 13px;
+    }
+    #dateSpan >:first-child:after {
+      width: 5px;
+      height: 5px;
+      left: 16px;
+      transform: skew(-45deg, 0);
+      
+    } */
