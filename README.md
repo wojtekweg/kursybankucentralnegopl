@@ -5,6 +5,11 @@
 3. (Optional) Install Jest plugin for your IDE - for example, I use Visual Studio Code and use the `orta.vscode-jest` extension.
 4. Run `npm run test` for running the tests.
 
+# Setting up end-to-end automated tests
+
+1. Run command: `npm install cypress --save-dev`
+2. Test the installation by running `./node_modules/.bin/cypress open`
+
 # Additionals
 
 - You can run `npm run coverage` to see what percentage of code is covered with unit tests.
@@ -20,4 +25,3 @@ https://jestjs.io/docs/getting-started
 https://www.learnhowtoprogram.com/intermediate-javascript/test-driven-development-and-environments-with-javascript/tdd-with-jest
 
 https://medium.com/swlh/jest-and-github-actions-eaf3eaf2427d
-
