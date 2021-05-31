@@ -13,5 +13,3 @@ jobs:
 
       - name: Cypress nightly tests 🌃
         uses: cypress-io/github-action@v2
-        with:
-          start: npm run Cypress
