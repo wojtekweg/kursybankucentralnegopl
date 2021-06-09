@@ -1,3 +1,5 @@
+# http://kursybankucentralnego.pl/
+
 # Setting up the repository
 
 1. `git clone` this repository.
@@ -14,7 +16,7 @@
 
 - You can run `npm run coverage` to see what percentage of code is covered with unit tests.
 
-- GitHub Actions CI is enabled - with each push for this repository, whole set of tests will be run.
+- GitHub Actions CI is enabled - with each push for this repository, whole set of tests will be run. Also, nightly run of end-to-end tests is set up.
 
 # Sites that we have used to learn TDD
 
@@ -25,3 +27,10 @@ https://jestjs.io/docs/getting-started
 https://www.learnhowtoprogram.com/intermediate-javascript/test-driven-development-and-environments-with-javascript/tdd-with-jest
 
 https://medium.com/swlh/jest-and-github-actions-eaf3eaf2427d
+
+# Sites that we used to learn Cypress
+
+https://docs.cypress.io/
+
+https://filiphric.com/blog
+
