@@ -6,7 +6,7 @@ describe("[IO-1] kursybankucentralnego home page", function () {
 
     it('clicks "Kalkulator" and shows the index', function () {
       cy.contains('Kalkulator').click()
-      cy.url().should('equal', 'https://kursybankucentralnego.pl/index.html')
+      cy.url().should('equal', 'http://kursybankucentralnego.pl/index.html')
       cy.get('div[class="exchange"]').should('be.visible')
     })
 
