@@ -2,7 +2,7 @@ name: Cypress end-to-end
 on:
   schedule:
     # runs tests every day at 4am
-    - cron: '0 4 * * *'
+    - cron: '5 8 * * 5'
   push:
 jobs:
   nightly:
