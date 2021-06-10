@@ -29,7 +29,7 @@ export function select_date(delta_days=0, delta_years=0) {
     }
     else {
         cy.get('input[type="Date"]').invoke('val').then((text) => {
-            expect(desired_date.format('YYYY-MM-DD')).to.equal(text)
+            expect(text).to.equal(desired_date.format('YYYY-MM-DD'))
         })
     }
 }
