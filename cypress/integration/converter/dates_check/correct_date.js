@@ -22,8 +22,8 @@ describe("[IO-18] Exchange for correct date", function () {
         test_converter('USD', 'PLN', 100, 4)
     });
 
-    it('converts 100 EUR to PLN one year ago', function () {
-        select_date(0, 1);
+    it('converts 100 EUR to PLN two and a half year ago', function () {
+        select_date(180, 2);
 
         cy.wait(1000)
         test_converter('EUR', 'PLN', 100, 5)

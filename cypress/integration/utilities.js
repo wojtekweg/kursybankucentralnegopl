@@ -18,10 +18,10 @@ export function test_converter(currency_in, currency_out, money_amount, expected
   }
 
 export function select_date(delta_days=0, delta_years=0) {
-    var future_date = moment().subtract(delta_days, 'days').subtract(delta_years, 'years');  // MM/DD/YYYY
-    var isWeekend = (future_date.day() === 6) || (future_date.day()  === 0);
+    var desired_date = moment().subtract(delta_days, 'days').subtract(delta_years, 'years');  // MM/DD/YYYY
+    var isWeekend = (desired_date.day() === 6) || (desired_date.day()  === 0);
         
-    cy.get('input[type="Date"]').type(future_date.format('YYYY-MM-DD')) //.type('{enter}')
+    cy.get('input[type="Date"]').type(desired_date.format('YYYY-MM-DD')) //.type('{enter}')
     cy.get('button').click();
 
     if (isWeekend) {
@@ -29,7 +29,7 @@ export function select_date(delta_days=0, delta_years=0) {
     }
     else {
         cy.get('input[type="Date"]').invoke('val').then((text) => {
-            expect(future_date.format('YYYY-MM-DD')).to.equal(text)
+            expect(desired_date.format('YYYY-MM-DD')).to.equal(text)
         })
     }
 }
