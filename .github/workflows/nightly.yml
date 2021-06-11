@@ -15,7 +15,7 @@ jobs:
         uses: cypress-io/github-action@v2
         
       - name: Upload artifacts
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         if: failure()
         with:
           name: cypress-videos
